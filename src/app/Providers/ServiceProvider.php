@@ -14,7 +14,10 @@ class ServiceProvider extends baseServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadViewsFrom(
+            __DIR__ . '/../../resources/views/porm',
+            'porm'
+        );
     }
 
     /**
