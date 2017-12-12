@@ -1,4 +1,7 @@
 {
     "name": "neji0924/prom",
-    "require": {}
+    "require": {},
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.1"
+    }
 }
