@@ -2,13 +2,12 @@
 
 ##安裝
 
-##使用
+##使用
 
 範例:
 
-
 ```php
-{{ Porm::email('email', '信箱', ['class' => 'text-red', 'required']) }}
+{{ Porm::email('email', '信箱', ['class' => 'text-red', 'required']) }}
 ```
 產生
 
@@ -29,4 +28,4 @@
 ```
 ---
 - email
-- password
+- password
