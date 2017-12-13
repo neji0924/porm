@@ -9,17 +9,6 @@ class Porm
 {
     private $class = 'form-control';
 
-    public function password($name, $label = null, $attributes = [])
-    {
-        $attr = $this->makeAttr($attributes);
-
-        return $this->toHtmlString(view('porm::password', compact(
-            'name',
-            'label',
-            'attr'
-        )));
-    }
-
     private function toHtmlString($html)
     {
         return new HtmlString($html);
@@ -54,4 +43,14 @@ class Porm
             return $key . '="' . $value . '"';
         }
     }
+
+    public function __call($method, $parameters)
+    {
+        return $this->toHtmlString(view("porm::{$method}", [
+            'name'  => $parameters[0],
+            'label' => $parameters[1],
+            'attr'  => $this->makeAttr($parameters[2])
+        ]));
+    }
+
 }
