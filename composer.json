@@ -1,7 +1,22 @@
 {
-    "name": "neji0924/prom",
-    "require": {},
-    "require-dev": {
-        "squizlabs/php_codesniffer": "^3.1"
+    "name": "neji0924/porm",
+    "require": {
+        "php": "^7.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Neji0924\\Porm\\": "src/app"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Neji0924\\Porm\\Providers\\ServiceProvider"
+            ],
+            "aliases": [
+                "Neji0924\\Porm\\Facades\\Porm"
+            ]
+        }
     }
 }
