@@ -9,6 +9,7 @@ class Porm
 {
     private $method;
     private $class;
+    private $model;
     private $csrf = true;
 
     public function open(Array $attributes = [])
@@ -18,6 +19,13 @@ class Porm
             'method' => $this->method,
             'csrf'   => $this->csrf
         ]));
+    }
+
+    public function model($model, $attributes = [])
+    {
+        $this->model = $model;
+
+        return $this->open($attributes);
     }
 
     public function close()
@@ -70,19 +78,14 @@ class Porm
         } elseif ('class' == $key) {
             $this->class .= ' ' . $value;
         } elseif ('route' == $key) {
-            return 'action="' . $value . '"';
+            return 'action="' . route($value) . '"';
         } elseif ('method' == $key) {
             $method = strtoupper($value);
-
             if ('GET' === $method) {
                 $this->csrf = false;
-
-                return $key . '="' . $method . '"';
             } elseif(in_array($method, ['PUT', 'PATCH', 'DELETE'])) {
                 $this->method = $method;
             }
-
-            return $key . '="POST"';
         } else {
             return $key . '="' . $value . '"';
         }
@@ -90,10 +93,21 @@ class Porm
 
     public function __call($method, $parameters)
     {
+        $name = $parameters[0];
+
+        if (isset($parameters[2])) {
+            $value = $parameters[2];
+        } elseif ($this->model && $this->model->$name) {
+            $value = $this->model->$name;
+        } else {
+            $value = null;
+        }
+        
         return $this->toHtmlString(view("porm::{$method}", [
-            'name'  => $parameters[0],
-            'label' => $parameters[1],
-            'attr'  => $this->makeGeneralAttr($parameters[2])
+            'name'  => $name,
+            'label' => $parameters[1] ?? $parameters[0],
+            'value' => $value,
+            'attr'  => $this->makeGeneralAttr($parameters[3] ?? [])
         ]));
     }
 }
