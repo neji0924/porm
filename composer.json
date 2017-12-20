@@ -14,9 +14,9 @@
             "providers": [
                 "Neji0924\\Porm\\Providers\\ServiceProvider"
             ],
-            "aliases": [
+            "aliases": {
                 "Porm": "Neji0924\\Porm\\Facades\\Porm"
-            ]
+            }
         }
     }
 }
