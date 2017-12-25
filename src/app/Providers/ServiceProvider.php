@@ -3,9 +3,9 @@
 namespace Neji0924\Porm\Providers;
 
 use Neji0924\Porm\Porm;
-use Illuminate\Support\ServiceProvider as baseServiceProvider;
+use Illuminate\Support\ServiceProvider;
 
-class ServiceProvider extends baseServiceProvider
+class AppServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
