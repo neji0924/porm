@@ -78,6 +78,10 @@ class Porm
         } elseif ('class' == $key) {
             $this->class .= ' ' . $value;
         } elseif ('route' == $key) {
+            if (is_array($value)) {
+                return 'action="' . route($value[0], $value[1]) . '"';
+            }
+            
             return 'action="' . route($value) . '"';
         } elseif ('method' == $key) {
             $method = strtoupper($value);
