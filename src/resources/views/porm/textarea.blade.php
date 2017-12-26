@@ -2,8 +2,7 @@
     <label for="email" class="col-md-4 control-label">{{ $label }}</label>
 
     <div class="col-md-6">
-        <textarea id="{{ $name }}" name="{{ $name }}" value="{{ $value or old($name) }}"  {!! $attr !!} >
-        </textarea>
+        <textarea id="{{ $name }}" name="{{ $name }}" {!! $attr !!} >{{ $value or old($name) }}</textarea>
 
         @if ($errors->has($name))
             <span class="help-block">
