@@ -2,6 +2,7 @@
 
 namespace Neji0924\Porm;
 
+use Route;
 use Session;
 use Illuminate\Support\HtmlString;
 
@@ -80,9 +81,11 @@ class Porm
         } elseif ('route' == $key) {
             if (is_array($value)) {
                 return 'action="' . route($value[0], $value[1]) . '"';
+            } elseif(Route::has($value)) {
+                return 'action="' . route($value) . '"';
             }
-            
-            return 'action="' . route($value) . '"';
+
+            return 'action="' . $value . '"';
         } elseif ('method' == $key) {
             $method = strtoupper($value);
             if ('GET' === $method) {
