@@ -29,6 +29,17 @@ class Porm
         return $this->open($attributes);
     }
 
+    public function select($name, $label, $items, $selected = [], $attributes = [])
+    {
+        return $this->toHtmlString(view('porm::select', [
+            'name'     => $name,
+            'label'    => $label,
+            'items'    => $items,
+            'selected' => is_array($selected) ? $selected : [$selected],
+            'attr'     => $this->makeGeneralAttr($attributes)
+        ]));
+    }
+
     public function close()
     {
         return $this->toHtmlString('</form>');
@@ -41,7 +52,7 @@ class Porm
 
     private function makeFormAttr($attributes)
     {
-        $this->class = 'form-horizontal';
+        $this->class = 'form-control';        
 
         return $this->makeAttr($attributes);
     }
