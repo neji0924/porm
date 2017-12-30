@@ -29,3 +29,9 @@
 ---
 - email
 - password
+- select
+- text
+- textarea
+- open
+- model
+- close
