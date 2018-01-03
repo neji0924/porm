@@ -16,7 +16,7 @@ class Porm
     public function open(Array $attributes = [])
     {
         return $this->toHtmlString(view("porm::form", [
-            'attr'   => $this->makeFormAttr($attributes),
+            'attr'   => $this->makeGeneralAttr($attributes),
             'method' => $this->method,
             'csrf'   => $this->csrf
         ]));
@@ -44,6 +44,15 @@ class Porm
         ]));
     }
 
+    public function button($content, $attributes = [], $type = 'button')
+    {
+        return $this->toHtmlString(view('porm::button', [
+            'content'  => $content,
+            'attr'     => $this->makeButtonAttr($attributes),
+            'type'     => $type
+        ]));
+    }
+
     public function close()
     {
         return $this->toHtmlString('</form>');
@@ -54,9 +63,13 @@ class Porm
         return new HtmlString($html);
     }
 
-    private function makeFormAttr($attributes)
+    private function makeButtonAttr($attributes)
     {
-        $this->class = 'form-control';        
+        if (isset($attributes['class']) && preg_match('/btn-/', $attributes['class'])) {
+            $this->class = 'form-control';
+        } else {
+            $this->class = 'form-control btn btn-info';
+        }
 
         return $this->makeAttr($attributes);
     }
