@@ -31,6 +31,10 @@ class Porm
 
     public function select($name, $label, $items, $selected = [], $attributes = [])
     {
+        if ($selected == [] && $this->model && $this->model->$name) {
+            $selected = $this->model->$name;
+        }
+
         return $this->toHtmlString(view('porm::select', [
             'name'     => $name,
             'label'    => $label,
