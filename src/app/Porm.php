@@ -53,6 +53,11 @@ class Porm
         ]));
     }
 
+    public function submit($content, $attributes = [])
+    {
+        return $this->button($content, $attributes, 'submit');
+    }
+
     public function close()
     {
         return $this->toHtmlString('</form>');
