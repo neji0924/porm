@@ -1,5 +1,5 @@
 <div class="form-group row{{ $errors->has($name) ? ' has-error' : '' }}">
-    <label for="email" class="col-md-3 col-form-label col-form-label-lg">{{ $label }}</label>
+    <label for="{{ $name }}" class="col-md-3 col-form-label col-form-label-lg">{{ $label }}</label>
 
     <div class="col-md-8">
         <textarea id="{{ $name }}" name="{{ $name }}" {!! $attr !!} >{{ $value or old($name) }}</textarea>
