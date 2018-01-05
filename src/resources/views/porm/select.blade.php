@@ -1,3 +1,8 @@
+@php
+if (! isset($errors)) {
+    $errors = collect();
+}
+@endphp
 <div class="form-group row{{ $errors->has($name) ? ' has-error' : '' }}">
     <label for="email" class="col-md-3 col-form-label col-form-label-lg">{{ $label }}</label>
     
