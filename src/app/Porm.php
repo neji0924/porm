@@ -31,6 +31,10 @@ class Porm
 
     public function select($name, $label, $items, $selected = [], $attributes = [])
     {
+        if(null === $selected) {
+            $selected = [];
+        }
+
         if ($selected == [] && $this->model && $this->model->$name) {
             $selected = $this->model->$name;
         }
