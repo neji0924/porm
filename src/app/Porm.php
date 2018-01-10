@@ -63,6 +63,11 @@ class Porm
         return $this->toHtmlString('</form>');
     }
 
+    public function hidden($key, $value)
+    {
+        return $this->toHtmlString(view('porm::hidden', compact('key', 'value')));
+    }
+
     private function toHtmlString($html)
     {
         return new HtmlString($html);
