@@ -72,6 +72,15 @@ class Porm
         return $this->toHtmlString(view('porm::hidden', compact('key', 'value')));
     }
 
+    public function file($name, $label = null, $attributes = [])
+    {
+        return $this->toHtmlString(view("porm::file", [
+            'name'  => $name,
+            'label' => $label,
+            'attr'  => $this->makeGeneralAttr($attributes)
+        ]));
+    }
+
     private function toHtmlString($html)
     {
         return new HtmlString($html);
