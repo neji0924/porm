@@ -12,7 +12,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Neji0924\\Porm\\Providers\\ServiceProvider"
+                "Neji0924\\Porm\\Providers\\AppServiceProvider"
             ],
             "aliases": {
                 "Porm": "Neji0924\\Porm\\Facades\\Porm"
