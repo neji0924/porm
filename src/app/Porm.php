@@ -159,8 +159,10 @@ class Porm
 
         if (isset($parameters[2])) {
             $value = $parameters[2];
-        } elseif ($this->model && $this->model->$name) {
-            $value = $this->model->$name;
+        } elseif ($this->model) {
+            //https://github.com/LaravelCollective/html/blob/5.5/src/FormBuilder.php line:1196
+            $key = str_replace(['.', '[]', '[', ']'], ['_', '', '.', ''], $name);
+            $value = data_get($this->model, $key);
         } else {
             $value = null;
         }
