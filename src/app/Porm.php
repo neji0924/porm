@@ -107,7 +107,7 @@ class Porm
     private function makeAttr($attributes)
     {
         $html = [];
-        
+
         foreach ($attributes as $key => $value) {
             $element = $this->parseAttr($key, $value);
 
@@ -126,6 +126,10 @@ class Porm
         if (is_numeric($key)) {
             return $value;
         } elseif (is_bool($value) && $key != 'value') {
+            if ('file' === $key) {
+                return $value ? 'enctype="multipart/form-data"' : '';
+            }
+
             return $value ? $key : '';
         } elseif ('class' == $key) {
             $this->class .= ' ' . $value;
