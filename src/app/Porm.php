@@ -5,6 +5,7 @@ namespace Neji0924\Porm;
 use Route;
 use Session;
 use Illuminate\Support\HtmlString;
+use Illuminate\Database\Eloquent\Collection;
 
 class Porm
 {
@@ -38,7 +39,11 @@ class Porm
 
         if ($selected == [] && $this->model) {
             $key = str_replace(['.', '[]', '[', ']'], ['_', '', '.', ''], $name);
-            $selected = data_get($this->model, $key)->toArray();
+            $selected = data_get($this->model, $key);
+
+            if ($selected instanceof Collection) {
+                $selected = [];
+            }
         }
 
         return $this->toHtmlString(view('porm::select', [
