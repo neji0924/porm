@@ -7,7 +7,7 @@ if (! isset($errors)) {
     <label for="{{ $name }}" class="col-md-3 col-form-label col-form-label-lg">{{ $label }}</label>
     
     <div class="col-md-8">
-        <select id="{{ $name }}" name="{{ $name }}" class="{{ $class }}{{ $errors->has($errorName) ? ' is-invalid' : '' }}"  {!! $attr !!}>
+        <select id="{{ $name }}" name="{{ $name }}" class="chosen {{ $class }}{{ $errors->has($errorName) ? ' is-invalid' : '' }}"  {!! $attr !!}>
             @foreach($items as $key => $item)
                 <option value="{{ $key }}" {{ in_array($key, $selected) ? 'selected' : ''   }}>{{ $item }}</option>
             @endforeach
