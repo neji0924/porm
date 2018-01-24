@@ -18,7 +18,8 @@ class Porm
         return $this->toHtmlString(view("porm::form", [
             'attr'   => $this->makeGeneralAttr($attributes),
             'method' => $this->method,
-            'csrf'   => $this->csrf
+            'csrf'   => $this->csrf,
+            'class'  => $this->class
         ]));
     }
 
@@ -42,10 +43,12 @@ class Porm
 
         return $this->toHtmlString(view('porm::select', [
             'name'     => $name,
+            'errorName' =>str_replace(['.', '[]', '[', ']'], ['_', '', '.', ''], $name),
             'label'    => $label,
             'items'    => $items,
             'selected' => is_array($selected) ? $selected : [$selected],
-            'attr'     => $this->makeGeneralAttr($attributes)
+            'attr'     => $this->makeGeneralAttr($attributes),
+            'class'  => $this->class
         ]));
     }
 
@@ -54,7 +57,8 @@ class Porm
         return $this->toHtmlString(view('porm::button', [
             'content'  => $content,
             'attr'     => $this->makeButtonAttr($attributes),
-            'type'     => $type
+            'type'     => $type,
+            'class'    => $this->class
         ]));
     }
 
@@ -77,8 +81,10 @@ class Porm
     {
         return $this->toHtmlString(view("porm::file", [
             'name'  => $name,
+            'errorName' =>str_replace(['.', '[]', '[', ']'], ['_', '', '.', ''], $name),
             'label' => $label,
-            'attr'  => $this->makeGeneralAttr($attributes)
+            'attr'  => $this->makeGeneralAttr($attributes),
+            'class' => $this->class
         ]));
     }
 
@@ -116,8 +122,6 @@ class Porm
                 $html[] = $element;
             }
         }
-
-        $html[] = 'class="' . $this->class . '"';
 
         return ' ' . implode(' ', $html);
     }
@@ -170,9 +174,11 @@ class Porm
         
         return $this->toHtmlString(view("porm::{$method}", [
             'name'  => $name,
+            'errorName' =>str_replace(['.', '[]', '[', ']'], ['_', '', '.', ''], $name),
             'label' => $parameters[1] ?? $parameters[0],
             'value' => $value,
-            'attr'  => $this->makeGeneralAttr($parameters[3] ?? [])
+            'attr'  => $this->makeGeneralAttr($parameters[3] ?? []),
+            'class' => $this->class
         ]));
     }
 }

@@ -1,1 +1,1 @@
-<button type="{{ $type }}" {!! $attr !!} >{{ $content }}</button>
+<button type="{{ $type }}" class="{{ $class }}"  {!! $attr !!} >{{ $content }}</button>

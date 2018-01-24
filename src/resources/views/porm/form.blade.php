@@ -1,4 +1,4 @@
-<form{!! $attr !!}{!! $csrf ? ' method="POST"' : '' !!}>
+<form class="{{ $class }}" {!! $attr !!}{!! $csrf ? ' method="POST"' : '' !!}>
 @if ($csrf)
     {{ csrf_field() }}
 @endif

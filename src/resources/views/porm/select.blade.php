@@ -3,19 +3,19 @@ if (! isset($errors)) {
     $errors = collect();
 }
 @endphp
-<div class="form-group row{{ $errors->has($name) ? ' has-error' : '' }}">
+<div class="form-group row{{ $errors->has($errorName) ? ' has-error' : '' }}">
     <label for="{{ $name }}" class="col-md-3 col-form-label col-form-label-lg">{{ $label }}</label>
     
     <div class="col-md-8">
-        <select id="{{ $name }}" name="{{ $name }}" {!! $attr !!}>
+        <select id="{{ $name }}" name="{{ $name }}" class="{{ $class }}"  {!! $attr !!}>
             @foreach($items as $key => $item)
                 <option value="{{ $key }}" {{ in_array($key, $selected) ? 'selected' : ''   }}>{{ $item }}</option>
             @endforeach
         </select>
 
-        @if ($errors->has($name))
+        @if ($errors->has($errorName))
             <span class="help-block">
-                <strong>{{ $errors->first($name) }}</strong>
+                <strong>{{ $errors->first($errorName) }}</strong>
             </span>
         @endif
     </div>
