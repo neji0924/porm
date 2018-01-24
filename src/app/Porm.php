@@ -38,7 +38,7 @@ class Porm
 
         if ($selected == [] && $this->model) {
             $key = str_replace(['.', '[]', '[', ']'], ['_', '', '.', ''], $name);
-            $selected = data_get($this->model, $key);
+            $selected = data_get($this->model, $key)->toArray();
         }
 
         return $this->toHtmlString(view('porm::select', [
