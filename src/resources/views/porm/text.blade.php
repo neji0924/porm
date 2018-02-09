@@ -10,7 +10,7 @@ if (! isset($errors)) {
         <input id="{{ $name }}" type="text" name="{{ $name }}" value="{{ $value or old($name) }}" class="{{ $class }}{{ $errors->has($errorName) ? ' is-invalid' : '' }}" {!! $attr !!}>
 
         <div class="invalid-feedback">
-            <strong>{{ $errors->first($errorName) }}</strong>
+            <strong>{{ $errors->has($errorName) ? $errors->first($errorName) : '' }}</strong>
         </div>
     </div>
 </div>
