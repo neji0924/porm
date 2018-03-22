@@ -74,6 +74,9 @@ class Porm
 
     public function close()
     {
+        $this->method = null;
+        $this->model = null;
+
         return $this->toHtmlString('</form>');
     }
 
